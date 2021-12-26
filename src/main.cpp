@@ -5,8 +5,6 @@ class User
 {
 public:
     std::string UserName;
-
-
 };
 
 void UserMenu()
