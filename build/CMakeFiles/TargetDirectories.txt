@@ -1,0 +1,3 @@
+/Users/ca/Dev/CC/Projects/StudentDatabase/build/CMakeFiles/main.dir
+/Users/ca/Dev/CC/Projects/StudentDatabase/build/CMakeFiles/edit_cache.dir
+/Users/ca/Dev/CC/Projects/StudentDatabase/build/CMakeFiles/rebuild_cache.dir
