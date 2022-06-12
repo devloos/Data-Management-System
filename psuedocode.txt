@@ -1,1 +1,0 @@
-We can start off by creating a menu for the user upon successful login
