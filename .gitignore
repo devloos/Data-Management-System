@@ -1,0 +1,4 @@
+.vscode/
+.tar
+.DS_Store
+build/
