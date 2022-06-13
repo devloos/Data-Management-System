@@ -6,7 +6,9 @@ set(CMAKE_BUILD_TYPE Debug)
 project(main)
 
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_include_directories(${PROJECT_NAME} PUBLIC /include)
+target_include_directories(${PROJECT_NAME} PUBLIC /include 
+                           /usr/local/include/bsoncxx/v_noabi 
+                           /usr/local/include/mongocxx/v_noabi)
 
 # Letting CMake find library
 # find_library(${LIB_NAME} ${LIB_TO_FIND} PATHS /tmp/customPath)

@@ -1,0 +1,13 @@
+{
+  "env": {
+    "myDefaultIncludePath": ["${workspaceFolder}", "${workspaceFolder}/include"]
+  },
+  "configurations": [
+    { 
+      "name": "mac",
+      "includePath": ["${myDefaultIncludePath}", "/usr/local/include/bsoncxx/v_noabi",
+                      "/usr/local/include/mongocxx/v_noabi"] 
+    }
+  ],
+  "version": 4
+}
