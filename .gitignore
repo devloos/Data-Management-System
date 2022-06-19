@@ -36,3 +36,5 @@
 *build/
 *design.md
 *mongo-c-driver
+*mongo-cxx-driver-r3.6.7
+*ncurses-6.3

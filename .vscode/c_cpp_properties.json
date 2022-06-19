@@ -6,7 +6,7 @@
     { 
       "name": "mac",
       "includePath": ["${myDefaultIncludePath}", "/usr/local/include/bsoncxx/v_noabi",
-                      "/usr/local/include/mongocxx/v_noabi"] 
+                      "/usr/local/include/mongocxx/v_noabi", "/usr/local/include/ncurses"] 
     }
   ],
   "version": 4
