@@ -5,7 +5,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(main)
 
-add_executable(${PROJECT_NAME} src/DataManagement.cpp src/Menu.cpp)
+add_executable(${PROJECT_NAME} src/DataManagement.cpp src/Menu.cpp src/handlers/CheckWindowSize.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC /include)
 
 find_library(mongocxx mongocxx.3.6.7 PATHS /usr/local/lib)

@@ -9,6 +9,8 @@
 #include <ncurses.h>
 
 #include "../include/Menu.h"
+
+void CheckWindowSize(WINDOW* &win, int &yMax, int &xMax, int &height, int &width);
   // mongocxx::instance inst{};
   // const auto uri = mongocxx::uri{"mongodb+srv://averageJoe:hxYWatUPGcblcWU5@sandboxdatabase.ok6hp.mongodb.net/?retryWrites=true&w=majority"};
   // mongocxx::client conn{uri};
@@ -17,19 +19,34 @@
   //   std::cout << "This works my guy\n";
 
 int main() {
-  Menu main(20, 20, (LINES - 20)/2, (COLS - 20)/2, LINES, COLS);
-  main.init();
-  while(1) {
-    if (LINES < 25)
-      LINES = 25;
-    if (COLS < 25)
-      COLS = 25;
+  initscr();
+  noecho();
+  curs_set(0);
 
-    if (LINES != main.m_lines || COLS != main.m_cols) {
-      main.resize();
+  int yMax, xMax, height, width;
+  getmaxyx(stdscr, yMax, xMax);
+
+  WINDOW* win = newwin(yMax / 2, xMax / 2, yMax / 4, xMax / 4);
+  nodelay(win, true);
+  box(win, 0, 0);
+
+  char ch;
+  while (ch = wgetch(win)) {
+    CheckWindowSize(win, yMax, xMax, height, width);
+    switch (ch) {
+      case KEY_DOWN: {
+        break;
+      }
+      case KEY_UP: {
+        break;
+      }
+      default: {
+        mvwprintw(win, 1, xMax / 4.5, "Main Menu"); // Always 1 for y
+        break;
+      }
     }
   }
-  getch();
-	endwin();			
+
+  endwin();
 	return 0;
 }
