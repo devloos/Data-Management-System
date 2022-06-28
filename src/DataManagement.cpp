@@ -53,6 +53,7 @@ int main() {
 
   Highlights highlighted = RunDatabase;
   char ch;
+
   while (ch = wgetch(win)) {
     CheckWindowSize(win, yMax, xMax, height, width);
     mvwprintw(win, 1, (xMax / 4)-4, "Main Menu"); // Always 1 for y
