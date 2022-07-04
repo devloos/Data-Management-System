@@ -1,7 +1,8 @@
 #ifndef MENU_H_
 #define MENU_H_
-#include <cstdint>
 #include <ncurses.h>
+
+#include <cstdint>
 
 class Menu {
  public:
@@ -14,4 +15,4 @@ class Menu {
   WINDOW* m_win;
 };
 
-#endif // MENU_H_
+#endif  // MENU_H_
