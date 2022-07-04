@@ -1,8 +1,8 @@
 #include "../include/Highlights.h"
 
-Highlights &operator++(Highlights &highlighted, int) {
+Highlights &operator++(Highlights &highlighted, int MaxSize) {
   const int i = int(highlighted) + 1;
-  if (i >= 5) return highlighted;
+  if (i >= MaxSize) return highlighted;
   highlighted = Highlights(i);
   return highlighted;
 }

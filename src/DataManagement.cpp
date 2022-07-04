@@ -26,16 +26,19 @@ int main() {
   std::array<std::string, 6> LoginSelection{"Login Menu",    "Student Login",
                                             "Faculty Login", "Proctor Login",
                                             "Admin Login",   "Exit Menu"};
+  std::array<std::string, 5> MainSelection{
+      "Main Menu", "Create Collection", "Reset Collection", "Remove Collection",
+      "Exit Program"};
   Highlights highlighted = CreateCollection;
   char ch;
 
   while ((ch = wgetch(menu.m_Win))) {
     menu.clear();
     menu.CheckWindowSize();
-    menu.PrintTitle();
+    menu.PrintTitle(MainSelection[0]);
     switch (ch) {
       case 'B': {
-        highlighted++;
+        operator++(highlighted, MainSelection.size());
         break;
       }
       case 'A': {
@@ -46,7 +49,7 @@ int main() {
         break;
       }
     }
-    menu.print(highlighted);
+    menu.print<MainSelection.size()>(highlighted, MainSelection);
   }
   return 0;
 }
