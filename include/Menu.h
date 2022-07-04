@@ -1,6 +1,7 @@
 #ifndef MENU_H_
 #define MENU_H_
 #include <ncurses.h>
+#undef timeout
 
 #include <array>
 #include <cstdint>

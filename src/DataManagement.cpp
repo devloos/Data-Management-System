@@ -4,11 +4,9 @@
 // #include <mongocxx/instance.hpp>
 // #include <mongocxx/options/client.hpp>
 // #include <mongocxx/uri.hpp>
-#include <string>
-#undef timeout
 #include <array>
+#include <string>
 
-#include "../include/Highlights.h"
 #include "../include/Menu.h"
 
 int main() {
@@ -32,12 +30,15 @@ int main() {
   Highlights highlighted = CreateCollection;
   char ch;
 
+  // TODO: awaitInput()
+  // ^ Removes access to m_Win which is what I want
   while ((ch = wgetch(menu.m_Win))) {
     menu.clear();
     menu.CheckWindowSize();
     menu.PrintTitle(MainSelection[0]);
     switch (ch) {
       case 'B': {
+        // TODO: switch to function! this is not normal use of operator
         operator++(highlighted, MainSelection.size());
         break;
       }
@@ -49,6 +50,7 @@ int main() {
         break;
       }
     }
+    // Calling print and passing size of array for template @param SIZE
     menu.print<MainSelection.size()>(highlighted, MainSelection);
   }
   return 0;
