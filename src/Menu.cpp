@@ -25,3 +25,18 @@ void Menu::CheckWindowSize() {
   }
   box(m_Win, 0, 0);
 }
+
+void Menu::PrintTitle() const {
+  mvwprintw(
+      m_Win, 1, (m_xMax / 4) - (MainSelection[0].size() / 2),
+      MainSelection[0].c_str());  // Always 1 for y
+}
+void Menu::print(const Highlights &highlighted) const {
+  for (int i = 1; i < MainSelection.size(); ++i) {
+    if (highlighted == Highlights(i)) wattron(m_Win, A_STANDOUT);
+    mvwprintw(
+        m_Win, (m_yMax / 4) + i, (m_xMax / 4) - (MainSelection[i].size() / 2),
+        MainSelection[i].c_str());  // Always 1 for y
+    if (highlighted == Highlights(i)) wattroff(m_Win, A_STANDOUT);
+  }
+}

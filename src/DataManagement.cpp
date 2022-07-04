@@ -8,23 +8,8 @@
 #undef timeout
 #include <array>
 
+#include "../include/Highlights.h"
 #include "../include/Menu.h"
-
-enum Highlights { CreateCollection = 1, ResetCollection, RemoveCollection, Exit };
-
-Highlights &operator++(Highlights &highlighted, int) {
-  const int i = int(highlighted) + 1;
-  if (i >= 3) return highlighted;
-  highlighted = Highlights(i);
-  return highlighted;
-}
-
-Highlights &operator--(Highlights &highlighted, int) {
-  const int i = int(highlighted) - 1;
-  if (i < 0) return highlighted;
-  highlighted = Highlights(i);
-  return highlighted;
-}
 
 int main() {
   // mongocxx::instance inst{};
@@ -38,9 +23,6 @@ int main() {
   //   ;
   // std::cout << "This works my guy\n";
   Menu menu;
-  std::array<std::string, 5> MainSelection{
-      "Main Menu", "Create Collection", "Reset Collection", "Remove Collection",
-      "Exit Program"};
   std::array<std::string, 6> LoginSelection{"Login Menu",    "Student Login",
                                             "Faculty Login", "Proctor Login",
                                             "Admin Login",   "Exit Menu"};
@@ -50,9 +32,7 @@ int main() {
   while ((ch = wgetch(menu.m_Win))) {
     menu.clear();
     menu.CheckWindowSize();
-    mvwprintw(
-        menu.m_Win, 1, (menu.m_xMax / 4) - (MainSelection[0].size() / 2),
-        MainSelection[0].c_str());  // Always 1 for y
+    menu.PrintTitle();
     switch (ch) {
       case 'B': {
         highlighted++;
@@ -66,14 +46,7 @@ int main() {
         break;
       }
     }
-    for (int i = 1; i < 5; ++i) {
-      if (highlighted == Highlights(i)) wattron(menu.m_Win, A_STANDOUT);
-      mvwprintw(
-          menu.m_Win, (menu.m_yMax / 4) + i,
-          (menu.m_xMax / 4) - (MainSelection[i].size() / 2),
-          MainSelection[i].c_str());  // Always 1 for y
-      if (highlighted == Highlights(i)) wattroff(menu.m_Win, A_STANDOUT);
-    }
+    menu.print(highlighted);
   }
   return 0;
 }
