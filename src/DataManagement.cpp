@@ -2,16 +2,15 @@
 
 #include <cstdlib>
 #include <iostream>
-#include <mongocxx/client.hpp>
-#include <mongocxx/instance.hpp>
-#include <mongocxx/options/client.hpp>
-#include <mongocxx/uri.hpp>
+// #include <mongocxx/client.hpp>
+// #include <mongocxx/instance.hpp>
+// #include <mongocxx/options/client.hpp>
+// #include <mongocxx/uri.hpp>
 #include <string>
 
 #include "../include/Menu.h"
 
-void CheckWindowSize(WINDOW *&win, int &yMax, int &xMax, int &height,
-                     int &width);
+void CheckWindowSize(WINDOW *&win, int &yMax, int &xMax, int &height, int &width);
 // mongocxx::instance inst{};
 // const auto uri =
 // mongocxx::uri{"mongodb+srv://averageJoe:hxYWatUPGcblcWU5@sandboxdatabase.ok6hp.mongodb.net/?retryWrites=true&w=majority"};

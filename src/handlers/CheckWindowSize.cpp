@@ -1,7 +1,6 @@
 #include "ncurses.h"
 
-void CheckWindowSize(WINDOW *&win, int &yMax, int &xMax, int &height,
-                     int &width) {
+void CheckWindowSize(WINDOW *&win, int &yMax, int &xMax, int &height, int &width) {
   getmaxyx(stdscr, height, width);
   if (yMax != height || xMax != width) {
     yMax = height;
