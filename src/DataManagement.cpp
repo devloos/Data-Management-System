@@ -6,10 +6,11 @@
 // #include <mongocxx/uri.hpp>
 #include <string>
 #undef timeout
+#include <array>
 
 #include "../include/Menu.h"
 
-enum Highlights { RunDatabase = 0, ResetDatabase, Exit };
+enum Highlights { CreateCollection = 1, ResetCollection, RemoveCollection, Exit };
 
 Highlights &operator++(Highlights &highlighted, int) {
   const int i = int(highlighted) + 1;
@@ -37,13 +38,21 @@ int main() {
   //   ;
   // std::cout << "This works my guy\n";
   Menu menu;
-  Highlights highlighted = RunDatabase;
+  std::array<std::string, 5> MainSelection{
+      "Main Menu", "Create Collection", "Reset Collection", "Remove Collection",
+      "Exit Program"};
+  std::array<std::string, 6> LoginSelection{"Login Menu",    "Student Login",
+                                            "Faculty Login", "Proctor Login",
+                                            "Admin Login",   "Exit Menu"};
+  Highlights highlighted = CreateCollection;
   char ch;
 
   while ((ch = wgetch(menu.m_Win))) {
-    wclear(menu.m_Win);
+    menu.clear();
     menu.CheckWindowSize();
-    mvwprintw(menu.m_Win, 1, (menu.m_xMax / 4) - 4, "Main Menu");  // Always 1 for y
+    mvwprintw(
+        menu.m_Win, 1, (menu.m_xMax / 4) - (MainSelection[0].size() / 2),
+        MainSelection[0].c_str());  // Always 1 for y
     switch (ch) {
       case 'B': {
         highlighted++;
@@ -53,112 +62,17 @@ int main() {
         highlighted--;
         break;
       }
-      case 'c': {
-        bool d = false;
-        while ((ch = wgetch(menu.m_Win)) && !d) {
-          wclear(menu.m_Win);
-          box(menu.m_Win, 0, 0);
-          menu.CheckWindowSize();
-          mvwprintw(menu.m_Win, 1, (menu.m_xMax / 4) - 2, "Login");  // Always 1 for y
-          switch (ch) {
-            case 'B': {
-              highlighted++;
-              break;
-            }
-            case 'A': {
-              highlighted--;
-              break;
-            }
-            case 'j': {
-              d = true;
-              break;
-            }
-            default: {
-              break;
-            }
-          }
-          switch (highlighted) {
-            case RunDatabase: {
-              wattron(menu.m_Win, A_STANDOUT);
-              mvwprintw(
-                  menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5,
-                  "Student Login");
-              wattroff(menu.m_Win, A_STANDOUT);
-              mvwprintw(
-                  menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6,
-                  "Faculty Login");
-              mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
-              break;
-            }
-            case ResetDatabase: {
-              mvwprintw(
-                  menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5,
-                  "Student Login");
-              wattron(menu.m_Win, A_STANDOUT);
-              mvwprintw(
-                  menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6,
-                  "Faculty Login");
-              wattroff(menu.m_Win, A_STANDOUT);
-              mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
-              break;
-            }
-            case Exit: {
-              mvwprintw(
-                  menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5,
-                  "Student Login");
-              mvwprintw(
-                  menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6,
-                  "Faculty Login");
-              wattron(menu.m_Win, A_STANDOUT);
-              mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
-              wattroff(menu.m_Win, A_STANDOUT);
-              break;
-            }
-            default: {
-              break;
-            }
-          }
-        }
-        break;
-      }
       default: {
         break;
       }
     }
-    switch (highlighted) {
-      case RunDatabase: {
-        wattron(menu.m_Win, A_STANDOUT);
-        mvwprintw(
-            menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5, "Run Database");
-        wattroff(menu.m_Win, A_STANDOUT);
-        mvwprintw(
-            menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6, "Reset Database");
-        mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
-        break;
-      }
-      case ResetDatabase: {
-        mvwprintw(
-            menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5, "Run Database");
-        wattron(menu.m_Win, A_STANDOUT);
-        mvwprintw(
-            menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6, "Reset Database");
-        wattroff(menu.m_Win, A_STANDOUT);
-        mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
-        break;
-      }
-      case Exit: {
-        mvwprintw(
-            menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5, "Run Database");
-        mvwprintw(
-            menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6, "Reset Database");
-        wattron(menu.m_Win, A_STANDOUT);
-        mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
-        wattroff(menu.m_Win, A_STANDOUT);
-        break;
-      }
-      default: {
-        break;
-      }
+    for (int i = 1; i < 5; ++i) {
+      if (highlighted == Highlights(i)) wattron(menu.m_Win, A_STANDOUT);
+      mvwprintw(
+          menu.m_Win, (menu.m_yMax / 4) + i,
+          (menu.m_xMax / 4) - (MainSelection[i].size() / 2),
+          MainSelection[i].c_str());  // Always 1 for y
+      if (highlighted == Highlights(i)) wattroff(menu.m_Win, A_STANDOUT);
     }
   }
   return 0;
