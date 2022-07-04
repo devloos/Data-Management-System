@@ -1,6 +1,3 @@
-#include <ncurses.h>
-#undef timeout
-
 #include <cstdlib>
 #include <iostream>
 // #include <mongocxx/client.hpp>
@@ -8,10 +5,10 @@
 // #include <mongocxx/options/client.hpp>
 // #include <mongocxx/uri.hpp>
 #include <string>
+#undef timeout
 
-// #include "../include/Menu.h"
+#include "../include/Menu.h"
 
-void CheckWindowSize(WINDOW *&win, int &yMax, int &xMax, int &height, int &width);
 enum Highlights { RunDatabase = 0, ResetDatabase, Exit };
 
 Highlights &operator++(Highlights &highlighted, int) {
@@ -39,23 +36,14 @@ int main() {
   //         bsoncxx::v_noabi::string::view_or_value("Connor Goated at Unit Circle")))
   //   ;
   // std::cout << "This works my guy\n";
-  initscr();
-  noecho();
-  curs_set(0);
-
-  int yMax, xMax, height, width;
-  getmaxyx(stdscr, yMax, xMax);
-
-  WINDOW *win = newwin(yMax / 2, xMax / 2, yMax / 4, xMax / 4);
-  nodelay(win, true);
-  box(win, 0, 0);
-
+  Menu menu;
   Highlights highlighted = RunDatabase;
   char ch;
 
-  while ((ch = wgetch(win))) {
-    CheckWindowSize(win, yMax, xMax, height, width);
-    mvwprintw(win, 1, (xMax / 4) - 4, "Main Menu");  // Always 1 for y
+  while ((ch = wgetch(menu.m_Win))) {
+    wclear(menu.m_Win);
+    menu.CheckWindowSize();
+    mvwprintw(menu.m_Win, 1, (menu.m_xMax / 4) - 4, "Main Menu");  // Always 1 for y
     switch (ch) {
       case 'B': {
         highlighted++;
@@ -65,33 +53,107 @@ int main() {
         highlighted--;
         break;
       }
+      case 'c': {
+        bool d = false;
+        while ((ch = wgetch(menu.m_Win)) && !d) {
+          wclear(menu.m_Win);
+          box(menu.m_Win, 0, 0);
+          menu.CheckWindowSize();
+          mvwprintw(menu.m_Win, 1, (menu.m_xMax / 4) - 2, "Login");  // Always 1 for y
+          switch (ch) {
+            case 'B': {
+              highlighted++;
+              break;
+            }
+            case 'A': {
+              highlighted--;
+              break;
+            }
+            case 'j': {
+              d = true;
+              break;
+            }
+            default: {
+              break;
+            }
+          }
+          switch (highlighted) {
+            case RunDatabase: {
+              wattron(menu.m_Win, A_STANDOUT);
+              mvwprintw(
+                  menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5,
+                  "Student Login");
+              wattroff(menu.m_Win, A_STANDOUT);
+              mvwprintw(
+                  menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6,
+                  "Faculty Login");
+              mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
+              break;
+            }
+            case ResetDatabase: {
+              mvwprintw(
+                  menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5,
+                  "Student Login");
+              wattron(menu.m_Win, A_STANDOUT);
+              mvwprintw(
+                  menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6,
+                  "Faculty Login");
+              wattroff(menu.m_Win, A_STANDOUT);
+              mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
+              break;
+            }
+            case Exit: {
+              mvwprintw(
+                  menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5,
+                  "Student Login");
+              mvwprintw(
+                  menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6,
+                  "Faculty Login");
+              wattron(menu.m_Win, A_STANDOUT);
+              mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
+              wattroff(menu.m_Win, A_STANDOUT);
+              break;
+            }
+            default: {
+              break;
+            }
+          }
+        }
+        break;
+      }
       default: {
         break;
       }
     }
     switch (highlighted) {
       case RunDatabase: {
-        wattron(win, A_STANDOUT);
-        mvwprintw(win, (yMax / 4) - 2, (xMax / 4) - 5, "Run Database");
-        wattroff(win, A_STANDOUT);
-        mvwprintw(win, (yMax / 4) - 1, (xMax / 4) - 6, "Reset Database");
-        mvwprintw(win, (yMax / 4), (xMax / 4) - 1, "Exit");
+        wattron(menu.m_Win, A_STANDOUT);
+        mvwprintw(
+            menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5, "Run Database");
+        wattroff(menu.m_Win, A_STANDOUT);
+        mvwprintw(
+            menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6, "Reset Database");
+        mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
         break;
       }
       case ResetDatabase: {
-        mvwprintw(win, (yMax / 4) - 2, (xMax / 4) - 5, "Run Database");
-        wattron(win, A_STANDOUT);
-        mvwprintw(win, (yMax / 4) - 1, (xMax / 4) - 6, "Reset Database");
-        wattroff(win, A_STANDOUT);
-        mvwprintw(win, (yMax / 4), (xMax / 4) - 1, "Exit");
+        mvwprintw(
+            menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5, "Run Database");
+        wattron(menu.m_Win, A_STANDOUT);
+        mvwprintw(
+            menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6, "Reset Database");
+        wattroff(menu.m_Win, A_STANDOUT);
+        mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
         break;
       }
       case Exit: {
-        mvwprintw(win, (yMax / 4) - 2, (xMax / 4) - 5, "Run Database");
-        mvwprintw(win, (yMax / 4) - 1, (xMax / 4) - 6, "Reset Database");
-        wattron(win, A_STANDOUT);
-        mvwprintw(win, (yMax / 4), (xMax / 4) - 1, "Exit");
-        wattroff(win, A_STANDOUT);
+        mvwprintw(
+            menu.m_Win, (menu.m_yMax / 4) - 2, (menu.m_xMax / 4) - 5, "Run Database");
+        mvwprintw(
+            menu.m_Win, (menu.m_yMax / 4) - 1, (menu.m_xMax / 4) - 6, "Reset Database");
+        wattron(menu.m_Win, A_STANDOUT);
+        mvwprintw(menu.m_Win, (menu.m_yMax / 4), (menu.m_xMax / 4) - 1, "Exit");
+        wattroff(menu.m_Win, A_STANDOUT);
         break;
       }
       default: {
@@ -99,7 +161,5 @@ int main() {
       }
     }
   }
-
-  endwin();
   return 0;
 }

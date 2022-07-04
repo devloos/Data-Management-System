@@ -6,13 +6,14 @@
 
 class Menu {
  public:
-  Menu(uint8_t height, uint8_t width, uint8_t y, uint8_t x);
-  bool init();
-  uint8_t m_width;
-  uint8_t m_height;
-  uint8_t m_x;
-  uint8_t m_y;
-  WINDOW* m_win;
+  Menu();
+  void clear();
+  void CheckWindowSize();
+  uint8_t m_Width;
+  uint8_t m_Height;
+  uint8_t m_xMax;
+  uint8_t m_yMax;
+  WINDOW* m_Win;
 };
 
 #endif  // MENU_H_
