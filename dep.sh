@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd lib
+
 git clone https://github.com/mongodb/mongo-c-driver.git
 cd mongo-c-driver
 git checkout 1.21.2
