@@ -27,7 +27,7 @@ class Menu {
       const Highlights &highlighted,
       const std::array<std::string, SIZE> &MenuSelection) const {
     // Placement of text with respect of the y axis
-    short int yPlacement = MenuSelection.size() / 2;
+    int8_t yPlacement = MenuSelection.size() / 2;
     // loop starting at index 1 to avoid collisions with title
     for (int i = 1; i < MenuSelection.size(); ++i) {
       // this is tenary since I might use a map later but checks if current index should
@@ -43,10 +43,10 @@ class Menu {
   WINDOW* m_Win;
 
  private:
-  short int m_Width;
-  short int m_Height;
-  short int m_xMax;
-  short int m_yMax;
+  uint8_t m_Width;
+  uint8_t m_Height;
+  uint8_t m_xMax;
+  uint8_t m_yMax;
 };
 
 #endif  // MENU_H_
