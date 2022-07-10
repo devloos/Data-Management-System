@@ -19,7 +19,7 @@ class Menu {
   void PrintTitle(const std::string &Title) const;
 
   // This is the bread and butter of printing the menu to the window
-  // a template it used to pass an array of any size (could have used template didnt think
+  // a template it used to pass an array of any size (could have used vector didnt think
   // the extra overhead was worth it)
   // using window attribute on and off to highlight the currently selected menu option
   template <std::size_t SIZE>
