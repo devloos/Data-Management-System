@@ -40,7 +40,7 @@ class Menu {
       --yPlacement;
     }
   }
-  WINDOW *m_Win;
+  WINDOW* m_Win;
 
  private:
   uint8_t m_Width;
