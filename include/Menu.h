@@ -55,6 +55,7 @@ namespace {
 template <typename T, std::size_t SIZE>
 T MenuHandler(std::array<std::string, SIZE> MenuOptions, T option) {
   Menu menu;
+  const int8_t ENTER_KEY = 10, UP_ARROW = 'A', DOWN_ARROW = 'B';
   char ch;
   // ^ Removes access to m_Win which is what I want
   while ((ch = menu.input())) {
@@ -62,15 +63,15 @@ T MenuHandler(std::array<std::string, SIZE> MenuOptions, T option) {
     menu.CheckWindowSize();
     menu.PrintTitle(MenuOptions[0]);
     switch (ch) {
-      case 'B': {
-        IncreaseHighlighted<T>(option, MenuOptions.size() - 1);
-        break;
-      }
-      case 'A': {
+      case UP_ARROW: {
         DecreaseHighlighted<T>(option);
         break;
       }
-      case 'D': {
+      case DOWN_ARROW: {
+        IncreaseHighlighted<T>(option, MenuOptions.size() - 1);
+        break;
+      }
+      case ENTER_KEY: {
         return option;
         break;
       }
