@@ -30,9 +30,8 @@ int main() {
   Highlights highlighted = CreateCollection;
   char ch;
 
-  // TODO: awaitInput()
   // ^ Removes access to m_Win which is what I want
-  while ((ch = wgetch(menu.m_Win))) {
+  while ((ch = menu.input())) {
     menu.clear();
     menu.CheckWindowSize();
     menu.PrintTitle(MainSelection[0]);

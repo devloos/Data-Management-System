@@ -17,6 +17,7 @@ class Menu {
   void clear();
   void CheckWindowSize();
   void PrintTitle(const std::string &Title) const;
+  char input() const;
 
   // This is the bread and butter of printing the menu to the window
   // a template it used to pass an array of any size (could have used vector didnt think
@@ -40,13 +41,13 @@ class Menu {
       --yPlacement;
     }
   }
-  WINDOW* m_Win;
 
  private:
   uint8_t m_Width;
   uint8_t m_Height;
   uint8_t m_xMax;
   uint8_t m_yMax;
+  WINDOW* m_Win;
 };
 
 #endif  // MENU_H_

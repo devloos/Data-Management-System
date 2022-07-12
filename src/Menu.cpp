@@ -40,3 +40,4 @@ void Menu::PrintTitle(const std::string &Title) const {
       m_Win, 1, (m_xMax / 4) - (Title.size() / 2),
       Title.c_str());  // Always 1 for y
 }
+char Menu::input() const { return wgetch(m_Win); }
