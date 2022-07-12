@@ -44,10 +44,10 @@ class Menu {
   }
 
  private:
-  uint8_t width_;
-  uint8_t height_;
-  uint8_t xMax_;
-  uint8_t yMax_;
+  uint16_t width_;
+  uint16_t height_;
+  uint16_t xMax_;
+  uint16_t yMax_;
   WINDOW* win_;
 };
 
