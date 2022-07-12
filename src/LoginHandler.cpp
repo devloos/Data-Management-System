@@ -8,24 +8,25 @@ void LoginHandler() {
   std::array<std::string, 6> LoginOptions{"Login Menu",    "Student Login",
                                           "Faculty Login", "Proctor Login",
                                           "Admin Login",   "Exit Menu"};
-  LoginMenu option = ExitMenu;
+  LoginMenu option = LoginMenu::Exit;
   do {
-    option = MenuHandler<LoginMenu, LoginOptions.size()>(LoginOptions, Student);
+    option =
+        MenuHandler<LoginMenu, LoginOptions.size()>(LoginOptions, LoginMenu::Student);
     switch (option) {
-      case Student: {
+      case LoginMenu::Student: {
         break;
       }
-      case Faculty: {
+      case LoginMenu::Faculty: {
         break;
       }
-      case Proctor: {
+      case LoginMenu::Proctor: {
         break;
       }
-      case Admin: {
+      case LoginMenu::Admin: {
         break;
       }
       default:
         break;
     }
-  } while (option != ExitMenu);
+  } while (option != LoginMenu::Exit);
 }

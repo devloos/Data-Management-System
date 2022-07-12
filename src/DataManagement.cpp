@@ -26,24 +26,24 @@ int main() {
   std::array<std::string, 5> MenuOptions{
       "Main Menu", "Create Collection", "Reset Collection", "Remove Collection",
       "Exit Program"};
-  MainMenu option = Exit;
+  MainMenu option = MainMenu::Exit;
   do {
-    option = MenuHandler<MainMenu, MenuOptions.size()>(MenuOptions, Create);
+    option = MenuHandler<MainMenu, MenuOptions.size()>(MenuOptions, MainMenu::Create);
     switch (option) {
-      case Create: {
+      case MainMenu::Create: {
         LoginHandler();
         break;
       }
-      case Reset: {
+      case MainMenu::Reset: {
         break;
       }
-      case Remove: {
+      case MainMenu::Remove: {
         break;
       }
       default:
         break;
     }
-  } while (option != Exit);
+  } while (option != MainMenu::Exit);
   system("clear");
   return 0;
 }

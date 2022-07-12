@@ -3,8 +3,8 @@
 
 #include <cstdint>
 
-enum MainMenu { Create = 1, Reset, Remove, Exit };
-enum LoginMenu { Student = 1, Faculty, Proctor, Admin, ExitMenu };
+enum struct MainMenu { Create = 1, Reset, Remove, Exit };
+enum struct LoginMenu { Student = 1, Faculty, Proctor, Admin, Exit };
 
 namespace {
 template <typename T>
