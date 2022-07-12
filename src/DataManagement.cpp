@@ -7,6 +7,7 @@
 #include <array>
 #include <string>
 
+#include "../include/Highlights.h"
 #include "../include/Menu.h"
 
 int main() {
@@ -21,28 +22,27 @@ int main() {
   //   ;
   // std::cout << "This works my guy\n";
   Menu menu;
-  std::array<std::string, 6> LoginSelection{"Login Menu",    "Student Login",
-                                            "Faculty Login", "Proctor Login",
-                                            "Admin Login",   "Exit Menu"};
-  std::array<std::string, 5> MainSelection{
+  std::array<std::string, 6> LoginOptions{"Login Menu",    "Student Login",
+                                          "Faculty Login", "Proctor Login",
+                                          "Admin Login",   "Exit Menu"};
+  std::array<std::string, 5> MainOptions{
       "Main Menu", "Create Collection", "Reset Collection", "Remove Collection",
       "Exit Program"};
-  Highlights highlighted = CreateCollection;
+  MainMenu options = Create;
   char ch;
 
   // ^ Removes access to m_Win which is what I want
   while ((ch = menu.input())) {
     menu.clear();
     menu.CheckWindowSize();
-    menu.PrintTitle(MainSelection[0]);
+    menu.PrintTitle(MainOptions[0]);
     switch (ch) {
       case 'B': {
-        // TODO: switch to function! this is not normal use of operator
-        operator++(highlighted, MainSelection.size());
+        IncreaseHighlighted<MainMenu>(options, MainOptions.size() - 1);
         break;
       }
       case 'A': {
-        highlighted--;
+        DecreaseHighlighted<MainMenu>(options);
         break;
       }
       default: {
@@ -50,7 +50,7 @@ int main() {
       }
     }
     // Calling print and passing size of array for template @param SIZE
-    menu.print<MainSelection.size()>(highlighted, MainSelection);
+    menu.print<MainMenu, MainOptions.size()>(options, MainOptions);
   }
   return 0;
 }

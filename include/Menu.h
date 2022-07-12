@@ -23,21 +23,19 @@ class Menu {
   // a template it used to pass an array of any size (could have used vector didnt think
   // the extra overhead was worth it)
   // using window attribute on and off to highlight the currently selected menu option
-  template <std::size_t SIZE>
-  void print(
-      const Highlights &highlighted,
-      const std::array<std::string, SIZE> &MenuSelection) const {
+  template <typename T, std::size_t SIZE>
+  void print(const T &highlighted, const std::array<std::string, SIZE> &options) const {
     // Placement of text with respect of the y axis
-    int8_t yPlacement = MenuSelection.size() / 2;
+    int8_t yPlacement = options.size() / 2;
     // loop starting at index 1 to avoid collisions with title
-    for (int i = 1; i < MenuSelection.size(); ++i) {
+    for (int i = 1; i < options.size(); ++i) {
       // this is tenary since I might use a map later but checks if current index should
       // be the one highlighted
-      if (highlighted == Highlights(i)) wattron(m_Win, A_STANDOUT);
+      if (highlighted == T(i)) wattron(m_Win, A_STANDOUT);
       mvwprintw(
-          m_Win, (m_yMax / 4) - yPlacement, (m_xMax / 4) - (MenuSelection[i].size() / 2),
-          MenuSelection[i].c_str());
-      if (highlighted == Highlights(i)) wattroff(m_Win, A_STANDOUT);
+          m_Win, (m_yMax / 4) - yPlacement, (m_xMax / 4) - (options[i].size() / 2),
+          options[i].c_str());
+      if (highlighted == T(i)) wattroff(m_Win, A_STANDOUT);
       --yPlacement;
     }
   }
