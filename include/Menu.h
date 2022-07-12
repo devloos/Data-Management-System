@@ -34,21 +34,21 @@ class Menu {
     for (int i = 1; i < options.size(); ++i) {
       // this is tenary since I might use a map later but checks if current index should
       // be the one highlighted
-      if (highlighted == T(i)) wattron(m_Win, A_STANDOUT);
+      if (highlighted == T(i)) wattron(win_, A_STANDOUT);
       mvwprintw(
-          m_Win, (m_yMax / 4) - yPlacement, (m_xMax / 4) - (options[i].size() / 2),
+          win_, (yMax_ / 4) - yPlacement, (xMax_ / 4) - (options[i].size() / 2),
           options[i].c_str());
-      if (highlighted == T(i)) wattroff(m_Win, A_STANDOUT);
+      if (highlighted == T(i)) wattroff(win_, A_STANDOUT);
       --yPlacement;
     }
   }
 
  private:
-  uint8_t m_Width;
-  uint8_t m_Height;
-  uint8_t m_xMax;
-  uint8_t m_yMax;
-  WINDOW* m_Win;
+  uint8_t width_;
+  uint8_t height_;
+  uint8_t xMax_;
+  uint8_t yMax_;
+  WINDOW* win_;
 };
 
 namespace {
@@ -57,7 +57,7 @@ T MenuHandler(std::array<std::string, SIZE> MenuOptions, T option) {
   Menu menu;
   const int8_t ENTER_KEY = 10, UP_ARROW = 'A', DOWN_ARROW = 'B';
   char ch;
-  // ^ Removes access to m_Win which is what I want
+  // ^ Removes access to win_ which is what I want
   while ((ch = menu.input())) {
     menu.clear();
     menu.CheckWindowSize();
