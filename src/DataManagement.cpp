@@ -10,6 +10,8 @@
 #include "../include/Highlights.h"
 #include "../include/Menu.h"
 
+void LoginHandler();
+
 int main() {
   // mongocxx::instance inst{};
   // const auto uri = mongocxx::uri{
@@ -24,22 +26,24 @@ int main() {
   std::array<std::string, 5> MenuOptions{
       "Main Menu", "Create Collection", "Reset Collection", "Remove Collection",
       "Exit Program"};
-  std::array<std::string, 6> LoginOptions{"Login Menu",    "Student Login",
-                                          "Faculty Login", "Proctor Login",
-                                          "Admin Login",   "Exit Menu"};
-  switch (MenuHandler<MainMenu, MenuOptions.size()>(MenuOptions, Create)) {
-    case Create: {
-      MenuHandler<LoginMenu, LoginOptions.size()>(LoginOptions, Student);
-      break;
+  MainMenu option = Exit;
+  do {
+    option = MenuHandler<MainMenu, MenuOptions.size()>(MenuOptions, Create);
+    switch (option) {
+      case Create: {
+        LoginHandler();
+        break;
+      }
+      case Reset: {
+        break;
+      }
+      case Remove: {
+        break;
+      }
+      default:
+        break;
     }
-    case Reset: {
-      break;
-    }
-    case Remove: {
-      break;
-    }
-    default:
-      break;
-  }
+  } while (option != Exit);
+  system("clear");
   return 0;
 }
