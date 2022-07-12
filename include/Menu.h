@@ -9,10 +9,13 @@
 
 #include "../include/Highlights.h"
 
+enum Menus { Main = 0, Login };
+
 class Menu {
  public:
   // TODO: Implementing the rule of 5
   Menu();
+  ~Menu();
   // Refer to documentation in Menu.cpp
   void clear();
   void CheckWindowSize();

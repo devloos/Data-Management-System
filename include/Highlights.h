@@ -3,10 +3,10 @@
 
 #include <cstdint>
 
-namespace {
 enum MainMenu { Create = 1, Reset, Remove, Exit };
 enum LoginMenu { Student = 1, Faculty, Proctor, Admin, ExitMenu };
 
+namespace {
 template <typename T>
 void IncreaseHighlighted(T &highlighted, const int8_t &max) {
   const int i = int(highlighted) + 1;

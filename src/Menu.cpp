@@ -13,6 +13,9 @@ Menu::Menu() {
   m_Win = newwin(m_yMax / 2, m_xMax / 2, m_yMax / 4, m_xMax / 4);
   nodelay(m_Win, true);
 }
+
+Menu::~Menu() { delwin(m_Win); }
+
 // Clear window content
 // Required for spill of content when resizing
 void Menu::clear() { wclear(m_Win); }
