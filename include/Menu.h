@@ -51,4 +51,38 @@ class Menu {
   WINDOW* m_Win;
 };
 
+namespace {
+template <typename T, std::size_t SIZE>
+T MenuHandler(std::array<std::string, SIZE> MenuOptions, T option) {
+  Menu menu;
+  char ch;
+  // ^ Removes access to m_Win which is what I want
+  while ((ch = menu.input())) {
+    menu.clear();
+    menu.CheckWindowSize();
+    menu.PrintTitle(MenuOptions[0]);
+    switch (ch) {
+      case 'B': {
+        IncreaseHighlighted<T>(option, MenuOptions.size() - 1);
+        break;
+      }
+      case 'A': {
+        DecreaseHighlighted<T>(option);
+        break;
+      }
+      case 'D': {
+        return option;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    // Calling print and passing size of array for template @param SIZE
+    menu.print<T, MenuOptions.size()>(option, MenuOptions);
+  }
+  return option;
+}
+}  // namespace
+
 #endif  // MENU_H_

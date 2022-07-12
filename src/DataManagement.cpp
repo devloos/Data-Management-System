@@ -10,9 +10,6 @@
 #include "../include/Highlights.h"
 #include "../include/Menu.h"
 
-MainMenu MainHandler();
-LoginMenu LoginHandler();
-
 int main() {
   // mongocxx::instance inst{};
   // const auto uri = mongocxx::uri{
@@ -24,9 +21,15 @@ int main() {
   //         bsoncxx::v_noabi::string::view_or_value("Connor Goated at Unit Circle")))
   //   ;
   // std::cout << "This works my guy\n";
-  switch (MainHandler()) {
+  std::array<std::string, 5> MenuOptions{
+      "Main Menu", "Create Collection", "Reset Collection", "Remove Collection",
+      "Exit Program"};
+  std::array<std::string, 6> LoginOptions{"Login Menu",    "Student Login",
+                                          "Faculty Login", "Proctor Login",
+                                          "Admin Login",   "Exit Menu"};
+  switch (MenuHandler<MainMenu, MenuOptions.size()>(MenuOptions, Create)) {
     case Create: {
-      LoginHandler();
+      MenuHandler<LoginMenu, LoginOptions.size()>(LoginOptions, Student);
       break;
     }
     case Reset: {
