@@ -1,7 +1,3 @@
-#include <array>
-#include <string>
-
-#include "../include/Highlights.h"
 #include "../include/Menu.h"
 
 void LoginHandler() {
