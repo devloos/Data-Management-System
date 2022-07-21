@@ -24,6 +24,7 @@ int main() {
   //   ;
   // std::cout << "This works my guy\n";
   MainHandler();
+
   system("clear");
   return 0;
 }
