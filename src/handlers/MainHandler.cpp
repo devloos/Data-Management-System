@@ -11,6 +11,7 @@ void MainHandler() {
     option = MenuHandler<MainMenu, MainOptions.size()>(MainOptions, MainMenu::Create);
     switch (option) {
       case MainMenu::Create: {
+        // init database();
         LoginHandler();
         break;
       }

@@ -23,17 +23,16 @@ class Menu {
   char input() const;
 
   // This is the bread and butter of printing the menu to the window
-  // a template it used to pass an array of any size (could have used vector didnt think
+  // a template is used to pass an array of any size (could have used vector didnt think
   // the extra overhead was worth it)
-  // using window attribute on and off to highlight the currently selected menu option
   template <typename T, std::size_t SIZE>
   void print(const T &highlighted, const std::array<std::string, SIZE> &options) const {
     // Placement of text with respect of the y axis
     int8_t yPlacement = options.size() / 2;
     // loop starting at index 1 to avoid collisions with title
     for (int i = 1; i < options.size(); ++i) {
-      // this is tenary since I might use a map later but checks if current index should
-      // be the one highlighted
+      // TODO: Maybe use map
+      // using window attribute on and off to highlight the currently selected menu option
       if (highlighted == T(i)) wattron(win_, A_STANDOUT);
       mvwprintw(
           win_, (yMax_ / 4) - yPlacement, (xMax_ / 4) - (options[i].size() / 2),
@@ -44,14 +43,11 @@ class Menu {
   }
 
  private:
-  uint16_t width_;
-  uint16_t height_;
   uint16_t xMax_;
   uint16_t yMax_;
   WINDOW* win_;
 };
 
-namespace {
 template <typename T, std::size_t SIZE>
 T MenuHandler(std::array<std::string, SIZE> MenuOptions, T option) {
   Menu menu;
@@ -84,6 +80,5 @@ T MenuHandler(std::array<std::string, SIZE> MenuOptions, T option) {
   }
   return option;
 }
-}  // namespace
 
 #endif  // MENU_H_

@@ -5,10 +5,7 @@ Menu::Menu() {
   initscr();
   noecho();
   curs_set(0);
-
   getmaxyx(stdscr, yMax_, xMax_);
-  height_ = yMax_;
-  width_ = xMax_;
 
   win_ = newwin(yMax_ / 2, xMax_ / 2, yMax_ / 4, xMax_ / 4);
   nodelay(win_, true);
@@ -22,11 +19,13 @@ void Menu::clear() { wclear(win_); }
 // Gets current size of window and compares it to "passed" y max and x max
 // if change then resize window
 void Menu::CheckWindowSize() {
-  getmaxyx(stdscr, height_, width_);
-  // if either or
-  if (yMax_ != height_ || xMax_ != width_) {
-    yMax_ = height_;
-    xMax_ = width_;
+  uint16_t height;
+  uint16_t width;
+  getmaxyx(stdscr, height, width);
+
+  if (yMax_ != height || xMax_ != width) {
+    yMax_ = height;
+    xMax_ = width;
     // Based on ncurses documentation https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/
     wborder(win_, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
     wrefresh(win_);
