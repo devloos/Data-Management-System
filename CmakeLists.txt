@@ -5,9 +5,13 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(main)
 
+set(Classes src/classes)
+set(Handlers src/handlers)
+
 add_executable(
-    ${PROJECT_NAME} src/DataManagement.cpp src/Menu.cpp src/handlers/LoginHandler.cpp
-    src/handlers/MainHandler.cpp)
+    ${PROJECT_NAME} src/DataManagement.cpp src/Menu.cpp ${Handlers}/LoginHandler.cpp
+    ${Handlers}/MainHandler.cpp ${Classes}/Person.cpp ${Classes}/Student.cpp 
+    ${Classes}/Faculty.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC /include)
 
 find_library(mongocxx mongocxx.3.6.7 PATHS /usr/local/lib)

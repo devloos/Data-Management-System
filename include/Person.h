@@ -5,10 +5,10 @@
 
 class Person {
  public:
-  Person(const uint16_t &id, const std::string &password);
   Person(
       const uint16_t &id, const std::string &password, const std::string &name,
       const uint8_t &age, const std::string &birthday);
+  Person(const uint16_t &id, const std::string &password);
   std::string getName() const;
   uint8_t getAge() const;
   std::string getBirthday() const;
