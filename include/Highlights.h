@@ -4,7 +4,7 @@
 #include <cstdint>
 
 enum struct MainMenu { Create = 1, Reset, Remove, Exit };
-enum struct LoginMenu { Student = 1, Faculty, Proctor, Admin, Exit };
+enum struct LoginMenu { Student = 1, Teacher, Proctor, Admin, Exit };
 
 template <typename T>
 void IncreaseHighlighted(T &highlighted, const int8_t &max) {

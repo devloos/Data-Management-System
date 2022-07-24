@@ -2,7 +2,7 @@
 
 void LoginHandler() {
   std::array<std::string, 6> LoginOptions{"Login Menu",    "Student Login",
-                                          "Faculty Login", "Proctor Login",
+                                          "Teacher Login", "Proctor Login",
                                           "Admin Login",   "Exit Menu"};
   LoginMenu option = LoginMenu::Exit;
   do {
@@ -12,7 +12,7 @@ void LoginHandler() {
       case LoginMenu::Student: {
         break;
       }
-      case LoginMenu::Faculty: {
+      case LoginMenu::Teacher: {
         break;
       }
       case LoginMenu::Proctor: {
