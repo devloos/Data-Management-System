@@ -7,8 +7,10 @@
 #include <array>
 #include <string>
 
+#include "../include/Faculty.h"
 #include "../include/Highlights.h"
 #include "../include/Menu.h"
+#include "../include/Student.h"
 
 void MainHandler();
 
@@ -23,6 +25,7 @@ int main() {
   //         bsoncxx::v_noabi::string::view_or_value("Connor Goated at Unit Circle")))
   //   ;
   // std::cout << "This works my guy\n";
+
   MainHandler();
 
   system("clear");

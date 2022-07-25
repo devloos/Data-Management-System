@@ -2,10 +2,13 @@
 #define FACULTY_H_
 #include "Person.h"
 
-enum AccessLevel { Teacher = 0, Proctor, Admin };
+enum struct AccessLevel { Teacher = 0, Proctor, Admin };
 
 class Faculty : public Person {
  public:
+  Faculty(
+      const uint16_t &id, const std::string &password, const AccessLevel &accessLevel,
+      const uint8_t &yearsWorking);
   Faculty(
       const uint16_t &id, const std::string &password, const AccessLevel &accessLevel);
 

@@ -5,22 +5,22 @@
 
 #include "Person.h"
 
-enum AcademicStatus { Probation = 0, Falling_Behind, Good_Standing, Honors };
+enum struct AcademicStatus { Probation = 0, Falling_Behind, Good_Standing, Honors };
 
 class Student : public Person {
  public:
   Student(
-      const uint16_t &id, const std::string &password, const uint8_t studentYear,
+      const uint16_t &id, const std::string &password, const uint16_t studentYear,
       const float &GPA, const std::vector<std::string> &classSchedule,
       const std::unordered_map<std::string, char> &grades,
       const AcademicStatus &studentStatus);
   Student(
-      const uint16_t &id, const std::string &password, const uint8_t studentYear,
+      const uint16_t &id, const std::string &password, const uint16_t studentYear,
       const float &GPA, const std::vector<std::string> &classSchedule);
-  Student(const uint16_t &id, const std::string &password, const uint8_t studentYear);
+  Student(const uint16_t &id, const std::string &password, const uint16_t studentYear);
 
  private:
-  uint8_t studentYear_;
+  uint16_t studentYear_;
   float GPA_;
   std::vector<std::string> classSchedule_;
   std::unordered_map<std::string, char> grades_;

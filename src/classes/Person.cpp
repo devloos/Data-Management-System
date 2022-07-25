@@ -6,7 +6,7 @@ Person::Person(
     : id_(id), password_(password), name_(name), age_(age), birthday_(birthday) {}
 
 Person::Person(const uint16_t &id, const std::string &password)
-    : Person(id, password, "", -1, "") {}
+    : Person(id, password, "", 0, "") {}
 
 uint8_t Person::getAge() const { return age_; }
 std::string Person::getName() const { return name_; }
