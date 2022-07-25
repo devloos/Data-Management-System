@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../../include/Menu.h"
 
 void LoginHandler() {
@@ -10,6 +12,13 @@ void LoginHandler() {
         MenuHandler<LoginMenu, LoginOptions.size()>(LoginOptions, LoginMenu::Student);
     switch (option) {
       case LoginMenu::Student: {
+        system("clear");
+        std::string id;
+        std::string password;
+        std::cout << "Enter ID: ";
+        std::cin >> id;
+        std::cout << "Enter Password: ";
+        std::cin >> password;
         break;
       }
       case LoginMenu::Teacher: {

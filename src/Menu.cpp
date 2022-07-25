@@ -11,7 +11,10 @@ Menu::Menu() {
   nodelay(win_, true);
 }
 
-Menu::~Menu() { delwin(win_); }
+Menu::~Menu() {
+  delwin(win_);
+  endwin();
+}
 
 // Clear window content
 // Required for spill of content when resizing
