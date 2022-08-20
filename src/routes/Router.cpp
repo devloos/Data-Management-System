@@ -2,13 +2,13 @@
 
 namespace Router {
 void Login() {
-  std::array<std::string, 6> LoginOptions{"Login Menu",    "Student Login",
-                                          "Teacher Login", "Proctor Login",
-                                          "Admin Login",   "Exit Menu"};
+  std::array<std::string, 6> MenuOptions{"Login Menu",    "Student Login",
+                                         "Teacher Login", "Proctor Login",
+                                         "Admin Login",   "Exit Menu"};
   Menu::Options::Login option = Menu::Options::Login::Exit;
   do {
-    option = Menu::Logic::Input<Menu::Options::Login, LoginOptions.size()>(
-        LoginOptions, Menu::Options::Login::Student);
+    option = Menu::Logic::Input<Menu::Options::Login, MenuOptions.size()>(
+        MenuOptions, Menu::Options::Login::Student);
     switch (option) {
       case Menu::Options::Login::Student: {
         system("clear");
@@ -36,13 +36,13 @@ void Login() {
 }
 
 void Main() {
-  std::array<std::string, 5> MainOptions{
+  std::array<std::string, 5> MenuOptions{
       "Main Menu", "Create Collection", "Reset Collection", "Remove Collection",
       "Exit Program"};
   Menu::Options::Main option = Menu::Options::Main::Exit;
   do {
-    option = Menu::Logic::Input<Menu::Options::Main, MainOptions.size()>(
-        MainOptions, Menu::Options::Main::Create);
+    option = Menu::Logic::Input<Menu::Options::Main, MenuOptions.size()>(
+        MenuOptions, Menu::Options::Main::Create);
     switch (option) {
       case Menu::Options::Main::Create: {
         // init database();

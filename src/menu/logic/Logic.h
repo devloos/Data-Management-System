@@ -33,13 +33,13 @@ template <typename T, std::size_t SIZE>
 T Input(std::array<std::string, SIZE> MenuOptions, T option) {
   Menu menu;
   const int8_t ENTER_KEY = 10, UP_ARROW = 'A', DOWN_ARROW = 'B';
-  char ch;
+  char input;
   // ^ Removes access to win_ which is what I want
-  while ((ch = menu.input())) {
+  while ((input = menu.input())) {
     menu.clear();
     menu.CheckWindowSize();
     menu.PrintTitle(MenuOptions[0]);
-    switch (ch) {
+    switch (input) {
       case UP_ARROW: {
         DecreaseHighlighted<T>(option);
         break;
