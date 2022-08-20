@@ -9,10 +9,10 @@
 #include <array>
 #include <string>
 
-#include "../../include/Faculty.h"
 #include "../../include/Highlights.h"
 #include "../../include/Menu.h"
-#include "../../include/Student.h"
+#include "../models/Faculty.h"
+#include "../models/Student.h"
 
 void MainHandler();
 

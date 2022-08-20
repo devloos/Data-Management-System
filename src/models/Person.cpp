@@ -1,5 +1,6 @@
-#include "../../include/Person.h"
+#include "Person.h"
 
+namespace Model {
 Person::Person(
     const uint16_t &id, const std::string &password, const std::string &name,
     const uint8_t &age, const std::string &birthday)
@@ -11,3 +12,5 @@ Person::Person(const uint16_t &id, const std::string &password)
 uint8_t Person::getAge() const { return age_; }
 std::string Person::getName() const { return name_; }
 std::string Person::getBirthday() const { return birthday_; }
+
+}  // namespace Model

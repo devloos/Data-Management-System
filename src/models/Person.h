@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <string>
 
+namespace Model {
 class Person {
  public:
   Person(
@@ -20,5 +21,6 @@ class Person {
   uint8_t age_;
   std::string birthday_;
 };
+}  // namespace Model
 
 #endif  // PERSON_H_

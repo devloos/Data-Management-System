@@ -4,6 +4,7 @@
 
 enum struct AccessLevel { Teacher = 0, Proctor, Admin };
 
+namespace Model {
 class Faculty : public Person {
  public:
   Faculty(
@@ -16,5 +17,7 @@ class Faculty : public Person {
   AccessLevel accessLevel_;
   uint8_t yearsWorking_;
 };
+
+}  // namespace Model
 
 #endif  // FACULTY_H_

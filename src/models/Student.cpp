@@ -1,5 +1,6 @@
-#include "../../include/Student.h"
+#include "Student.h"
 
+namespace Model {
 Student::Student(
     const uint16_t &id, const std::string &password, const uint16_t studentYear,
     const float &GPA, const std::vector<std::string> &classSchedule,
@@ -24,3 +25,5 @@ Student::Student(
     : Student(
           id, password, studentYear, 0.0f, std::vector<std::string>(),
           std::unordered_map<std::string, char>(), AcademicStatus::Good_Standing) {}
+
+}  // namespace Model

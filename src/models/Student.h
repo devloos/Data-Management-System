@@ -7,6 +7,7 @@
 
 enum struct AcademicStatus { Probation = 0, Falling_Behind, Good_Standing, Honors };
 
+namespace Model {
 class Student : public Person {
  public:
   Student(
@@ -26,5 +27,6 @@ class Student : public Person {
   std::unordered_map<std::string, char> grades_;
   AcademicStatus studentStatus_;
 };
+}  // namespace Model
 
 #endif  // STUDENT_H_

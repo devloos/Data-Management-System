@@ -5,13 +5,13 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(main)
 
-set(Classes src/classes)
+set(Models src/models)
 set(Handlers src/handlers)
 
 add_executable(
     ${PROJECT_NAME} src/core/DataManagement.cpp src/Menu.cpp 
     ${Handlers}/LoginHandler.cpp ${Handlers}/MainHandler.cpp 
-    ${Classes}/Person.cpp ${Classes}/Student.cpp ${Classes}/Faculty.cpp
+    ${Models}/Person.cpp ${Models}/Student.cpp ${Models}/Faculty.cpp
     src/core/Application.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC /include)
 
