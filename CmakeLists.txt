@@ -10,7 +10,7 @@ set(Models src/models)
 add_executable(
     ${PROJECT_NAME} src/core/DataManagement.cpp src/menu/Menu.cpp 
     ${Models}/Person.cpp ${Models}/Student.cpp ${Models}/Faculty.cpp
-    src/core/Application.cpp src/control/Control.cpp)
+    src/core/Application.cpp src/routes/Router.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC /include)
 
 # find_library(mongocxx mongocxx.3.6.7 PATHS /usr/local/lib)

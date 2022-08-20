@@ -9,10 +9,10 @@
 #include <array>
 #include <string>
 
-#include "../control/Control.h"
 #include "../menu/Menu.h"
 #include "../models/Faculty.h"
 #include "../models/Student.h"
+#include "../routes/Router.h"
 
 namespace Application {
 void Start();

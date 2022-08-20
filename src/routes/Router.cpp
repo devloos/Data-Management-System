@@ -1,7 +1,7 @@
-#include "Control.h"
+#include "Router.h"
 
-namespace Control {
-void LoginMenu() {
+namespace Router {
+void Login() {
   std::array<std::string, 6> LoginOptions{"Login Menu",    "Student Login",
                                           "Teacher Login", "Proctor Login",
                                           "Admin Login",   "Exit Menu"};
@@ -35,7 +35,7 @@ void LoginMenu() {
   } while (option != Menu::Options::Login::Exit);
 }
 
-void MainMenu() {
+void Main() {
   std::array<std::string, 5> MainOptions{
       "Main Menu", "Create Collection", "Reset Collection", "Remove Collection",
       "Exit Program"};
@@ -46,7 +46,7 @@ void MainMenu() {
     switch (option) {
       case Menu::Options::Main::Create: {
         // init database();
-        LoginMenu();
+        Login();
         break;
       }
       case Menu::Options::Main::Reset: {
@@ -61,4 +61,4 @@ void MainMenu() {
   } while (option != Menu::Options::Main::Exit);
 
 }  // namespace Handler
-}  // namespace Control
+}  // namespace Router

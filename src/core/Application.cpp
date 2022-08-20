@@ -1,5 +1,5 @@
 #include "Application.h"
 
 namespace Application {
-void Start() { Control::MainMenu(); }
+void Start() { Router::Main(); }
 }  // namespace Application
