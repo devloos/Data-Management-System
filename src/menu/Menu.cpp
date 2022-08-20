@@ -1,5 +1,6 @@
-#include "../include/Menu.h"
+#include "Menu.h"
 
+namespace Menu {
 // Initializing window
 Menu::Menu() {
   initscr();
@@ -45,3 +46,5 @@ void Menu::PrintTitle(const std::string &Title) const {
             Title.c_str());  // Always 1 for y
 }
 char Menu::input() const { return wgetch(win_); }
+
+}  // namespace Menu

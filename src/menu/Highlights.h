@@ -3,9 +3,7 @@
 
 #include <cstdint>
 
-enum struct MainMenu { Create = 1, Reset, Remove, Exit };
-enum struct LoginMenu { Student = 1, Teacher, Proctor, Admin, Exit };
-
+namespace Menu {
 template <typename T>
 void IncreaseHighlighted(T &highlighted, const int8_t &max) {
   const int i = int(highlighted) + 1;
@@ -28,5 +26,7 @@ void DecreaseHighlighted(T &highlighted) {
   highlighted = T(i);
   return;
 }
+
+}  // namespace Menu
 
 #endif  // HIGHLIGHTS_H_

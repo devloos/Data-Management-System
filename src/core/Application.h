@@ -9,12 +9,11 @@
 #include <array>
 #include <string>
 
-#include "../../include/Highlights.h"
-#include "../../include/Menu.h"
+#include "../control/Control.h"
+#include "../menu/Highlights.h"
+#include "../menu/Menu.h"
 #include "../models/Faculty.h"
 #include "../models/Student.h"
-
-void MainHandler();
 
 namespace Application {
 void Start();

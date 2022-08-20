@@ -7,8 +7,9 @@
 #include <cstdint>
 #include <string>
 
-#include "../include/Highlights.h"
+#include "Highlights.h"
 
+namespace Menu {
 enum Menus { Main = 0, Login };
 
 class Menu {
@@ -48,8 +49,9 @@ class Menu {
   WINDOW* win_;
 };
 
+namespace Handle {
 template <typename T, std::size_t SIZE>
-T MenuHandler(std::array<std::string, SIZE> MenuOptions, T option) {
+T MenuLogic(std::array<std::string, SIZE> MenuOptions, T option) {
   Menu menu;
   const int8_t ENTER_KEY = 10, UP_ARROW = 'A', DOWN_ARROW = 'B';
   char ch;
@@ -80,5 +82,9 @@ T MenuHandler(std::array<std::string, SIZE> MenuOptions, T option) {
   }
   return option;
 }
+
+}  // namespace Handle
+
+}  // namespace Menu
 
 #endif  // MENU_H_
