@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "../menu-options/MenuOptions.h"
 #include "../menu/Menu.h"
+#include "../menu/options/Options.h"
 
 namespace Control {
 void LoginMenu();
