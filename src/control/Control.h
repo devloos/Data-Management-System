@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "../menu/Menu.h"
+#include "../menu/logic/Logic.h"
 #include "../menu/options/Options.h"
 
 namespace Control {

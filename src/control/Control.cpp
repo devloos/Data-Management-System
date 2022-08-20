@@ -7,7 +7,7 @@ void LoginMenu() {
                                           "Admin Login",   "Exit Menu"};
   Menu::Options::Login option = Menu::Options::Login::Exit;
   do {
-    option = Menu::Handle::MenuLogic<Menu::Options::Login, LoginOptions.size()>(
+    option = Menu::Logic::Input<Menu::Options::Login, LoginOptions.size()>(
         LoginOptions, Menu::Options::Login::Student);
     switch (option) {
       case Menu::Options::Login::Student: {
@@ -41,7 +41,7 @@ void MainMenu() {
       "Exit Program"};
   Menu::Options::Main option = Menu::Options::Main::Exit;
   do {
-    option = Menu::Handle::MenuLogic<Menu::Options::Main, MainOptions.size()>(
+    option = Menu::Logic::Input<Menu::Options::Main, MainOptions.size()>(
         MainOptions, Menu::Options::Main::Create);
     switch (option) {
       case Menu::Options::Main::Create: {

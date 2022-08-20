@@ -10,7 +10,6 @@
 #include <string>
 
 #include "../control/Control.h"
-#include "../menu/Highlights.h"
 #include "../menu/Menu.h"
 #include "../models/Faculty.h"
 #include "../models/Student.h"

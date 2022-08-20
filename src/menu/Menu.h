@@ -7,8 +7,6 @@
 #include <cstdint>
 #include <string>
 
-#include "Highlights.h"
-
 namespace Menu {
 enum Menus { Main = 0, Login };
 
@@ -48,43 +46,6 @@ class Menu {
   uint16_t yMax_;
   WINDOW* win_;
 };
-
-namespace Handle {
-template <typename T, std::size_t SIZE>
-T MenuLogic(std::array<std::string, SIZE> MenuOptions, T option) {
-  Menu menu;
-  const int8_t ENTER_KEY = 10, UP_ARROW = 'A', DOWN_ARROW = 'B';
-  char ch;
-  // ^ Removes access to win_ which is what I want
-  while ((ch = menu.input())) {
-    menu.clear();
-    menu.CheckWindowSize();
-    menu.PrintTitle(MenuOptions[0]);
-    switch (ch) {
-      case UP_ARROW: {
-        DecreaseHighlighted<T>(option);
-        break;
-      }
-      case DOWN_ARROW: {
-        IncreaseHighlighted<T>(option, MenuOptions.size() - 1);
-        break;
-      }
-      case ENTER_KEY: {
-        return option;
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-    // Calling print and passing size of array for template @param SIZE
-    menu.print<T, MenuOptions.size()>(option, MenuOptions);
-  }
-  return option;
-}
-
-}  // namespace Handle
-
 }  // namespace Menu
 
 #endif  // MENU_H_

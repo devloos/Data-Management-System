@@ -9,6 +9,7 @@
     "editor.formatOnSave": true
   },
   "files.associations": {
-    "unordered_map": "cpp"
+    "unordered_map": "cpp",
+    "iosfwd": "cpp"
   }
 }
